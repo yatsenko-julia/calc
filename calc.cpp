@@ -1,3 +1,8 @@
+/*
+
+  Reverse Polish Notation Calculator implementation
+
+*/
 #include <iostream>
 #include <cmath>
 using namespace std;
