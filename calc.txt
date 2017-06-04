@@ -1,0 +1,3 @@
+enter 4
+enter 0
+enter /

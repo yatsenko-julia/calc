@@ -4,46 +4,72 @@
 
 */
 #include <iostream>
+#include <string>
+#include <fstream>
 #include <cmath>
 using namespace std;
 
-int main(){
-  float first, second;
-  char operation;
+int main(int argc, char *argv[]){
+  ifstream file(argv[1]);
+  if(!file.is_open()){
+    cerr << "File failed to open" << endl;
+  }else{
+  
+    string enter, First, Second, operation;
 
-  cout << "First number:  ";
-  cin >> first;
-  cout << "Second number: ";
-  cin >> second;
-  cout << "Operation: ";
-  cin >> operation;
+    getline(file,enter, ' ');
+    getline(file,First); 
+    float first = stof(First);
+    getline(file,enter, ' ');
+    getline(file,Second); 
+    float second = stof(Second);
+    getline(file,enter, ' ');
+    getline(file,operation);
+    float result;
 
-  float result;
+    cout << first << " " << operation<< " " << second << endl;
+    
+   switch(operation.front()){
+      case '+':
+      {
+        result = first + second;
+        break;
+      } 
+      case '-':
+      {
+        result = first - second;
+        break;
+      }
+      case '*':
+      {
+        result = first * second;
+        break;
+      }
+      case '^':
+      {
+        result = pow(first, second);
+        break;
+      }
+      case '/':
+      {
+        result = first / second;
+        break;
+      } 
+      default:
+      {
+        cout << "Wrong input.";
+        exit(0);
+        }
+    }
 
-  if(operation == '+'){
-    result = first + second;
-  } 
-  else if(operation == '-'){
-    result = first - second;
-  }
-  else if(operation == '*'){
-    result = first * second;
-  }
-  else if(operation == '^'){
-    result = pow(first, second);
-  }
-  else if(second == 0 && operation == '/'){
-    cout << "na zero nizia" << endl;
-    exit(0);
-  }
-  else if(operation == '/'){
-    result = first / second;
-  } else 
-  {
-    cout << "Wrong input.";
-    exit(0);
-  }
+    if(second == 0 && operation.front() == '/'){
+        cout << "na zero nizia" << endl;
+        exit(0);
+      }
 
-  cout <<"Result: " << result << endl;
-  return 0;
+    cout <<"Result: " << result << endl;
+    
+    return 0;
+
+  }
 }
