@@ -9,27 +9,38 @@
 #include <cmath>
 using namespace std;
 
-int main(int argc, char *argv[]){
-  ifstream file(argv[1]);
-  if(!file.is_open()){
-    cerr << "File failed to open" << endl;
-  }else{
-  
-    string enter, First, Second, operation;
 
+int main(int argc, char *argv[]){
+  float first, second;
+  string operation;
+  float result;
+
+  ifstream file(argv[1]); 
+
+  if(!file.is_open()){
+    cerr << "File failed to open"<< endl;
+    cout << "Try enter first number:  ";
+    cin >> first;
+    cout << "Enter second number:  ";
+    cin >> second;
+    cout << "Enter operation: ";
+    cin >> operation;
+  } else{
+    string enter, one, two;
+    
     getline(file,enter, ' ');
-    getline(file,First); 
-    float first = stof(First);
+    getline(file,one); 
+    first = stof(one);
     getline(file,enter, ' ');
-    getline(file,Second); 
-    float second = stof(Second);
+    getline(file,two); 
+    second = stof(two);
     getline(file,enter, ' ');
     getline(file,operation);
-    float result;
-
-    cout << first << " " << operation<< " " << second << endl;
     
-   switch(operation.front()){
+    file.close();
+  }
+    cout << first << " " << operation<< " " << second << endl;
+    switch(operation.front()){
       case '+':
       {
         result = first + second;
@@ -52,6 +63,10 @@ int main(int argc, char *argv[]){
       }
       case '/':
       {
+        if(second == 0){
+          cout << "na zero nizia" << endl;
+          exit(0);
+        }
         result = first / second;
         break;
       } 
@@ -59,17 +74,8 @@ int main(int argc, char *argv[]){
       {
         cout << "Wrong input.";
         exit(0);
-        }
-    }
-
-    if(second == 0 && operation.front() == '/'){
-        cout << "na zero nizia" << endl;
-        exit(0);
       }
-
+    }
     cout <<"Result: " << result << endl;
-    
     return 0;
-
-  }
 }
