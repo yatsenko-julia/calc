@@ -70,6 +70,7 @@ int main(int argc, char *argv[]){
             result = first / second;
             break;
         }
+        st.push(result);
       }
      }else if(s == "="){
        cout << result << endl;
